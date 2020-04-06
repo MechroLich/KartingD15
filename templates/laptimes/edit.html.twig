@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Laptimes{% endblock %}
+
+{% block body %}
+    <h1>Edit Laptimes</h1>
+
+    {{ include('laptimes/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('laptimes_index') }}">back to list</a>
+
+    {{ include('laptimes/_delete_form.html.twig') }}
+{% endblock %}

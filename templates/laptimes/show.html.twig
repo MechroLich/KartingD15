@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laptimes{% endblock %}
+
+{% block body %}
+    <h1>Laptimes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ laptime.id }}</td>
+            </tr>
+            <tr>
+                <th>Lap1</th>
+                <td>{{ laptime.lap1 ? laptime.lap1|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lap2</th>
+                <td>{{ laptime.lap2 ? laptime.lap2|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lap3</th>
+                <td>{{ laptime.lap3 ? laptime.lap3|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ laptime.total ? laptime.total|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Finished</th>
+                <td>{{ laptime.finished }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('laptimes_index') }}">back to list</a>
+
+    <a href="{{ path('laptimes_edit', {'id': laptime.id}) }}">edit</a>
+
+    {{ include('laptimes/_delete_form.html.twig') }}
+{% endblock %}

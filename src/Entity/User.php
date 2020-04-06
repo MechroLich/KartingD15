@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -33,16 +34,19 @@ class User implements UserInterface
      */
     private $password;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     /**
      * A visual identifier that represents this user.
      *
      * @see UserInterface
      */
+    /**
+     * @return mixed
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getUsername(): string
     {
         return (string) $this->username;
@@ -105,4 +109,5 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
 }

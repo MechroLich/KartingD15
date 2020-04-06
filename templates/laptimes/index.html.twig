@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laptimes index{% endblock %}
+
+{% block body %}
+    <h1>Laptimes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lap1</th>
+                <th>Lap2</th>
+                <th>Lap3</th>
+                <th>Total</th>
+                <th>Finished</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laptime in laptimes %}
+            <tr>
+                <td>{{ laptime.id }}</td>
+                <td>{{ laptime.lap1 ? laptime.lap1|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.lap2 ? laptime.lap2|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.lap3 ? laptime.lap3|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.total ? laptime.total|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.finished }}</td>
+                <td>
+                    <a href="{{ path('laptimes_show', {'id': laptime.id}) }}">show</a>
+                    <a href="{{ path('laptimes_edit', {'id': laptime.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('laptimes_new') }}">Create new</a>
+{% endblock %}
