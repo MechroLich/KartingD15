@@ -3,5 +3,9 @@
 {% block title %}Welcome{% endblock %}
 
 {% block body %}
-<H1>Welcome user after login</H1>
+    {% if app.user %}
+        <H1>Welcome {{ app.user.username }}</H1>
+    {% else %}
+        <H1>You are not logged in, please log in <a href="{{ path('login') }}">here.</a> </H1>
+    {% endif %}
 {% endblock %}

@@ -7,13 +7,24 @@ use App\Entity\Laptimes;
 use App\Entity\User;
 use App\Entity\Races;
 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LaptimesFixture extends Fixture
 {
+
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
+
         $race1 = new Races();
         $race1->setDate(\DateTime::createFromFormat('Y-m-d', "2020-02-08"));
         $race1->setTrack("Track A");
@@ -23,18 +34,27 @@ class LaptimesFixture extends Fixture
 
         $user1 = new User();
         $user1->setUsername("Speed");
-        $user1->setPassword("pass");
-        $user1->setRoles([]);
+        $plainPassword1 = "pass";
+        $encodedPassword1=$this->passwordEncoder->encodePassword($user1,$plainPassword1);
+        $user1->setPassword($encodedPassword1);
+        #$user1->setPassword('pass');
+        $user1->setRoles(['ROLE_USER']);
 
         $user2 = new User();
         $user2->setUsername("Emp1");
-        $user2->setPassword("pass");
-        $user2->setRoles(["ROLE_STAFF"]);
+        $plainPassword2 = "pass";
+        $encodedPassword2=$this->passwordEncoder->encodePassword($user2,$plainPassword2);
+        $user2->setPassword($encodedPassword2);
+        #$user2->setPassword('pass');
+        $user2->setRoles(['ROLE_STAFF']);
 
         $user3 = new User();
         $user3->setUsername("admin");
-        $user3->setPassword("admin");
-        $user3->setRoles(["ROLE_ADMIN", "ROLE_STAFF"]);
+        $plainPassword3 = "admin";
+        $encodedPassword3 = $this->passwordEncoder->encodePassword($user3,$plainPassword3);
+        $user3->setPassword($encodedPassword3);
+        #$user3->setPassword('admin');
+        $user3->setRoles(['ROLE_ADMIN', 'ROLE_STAFF']);
 
         $manager->persist($user1);
         $manager->persist($user2);
