@@ -50,7 +50,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword1=$this->passwordEncoder->encodePassword($user1,$plainPassword1);
         $user1->setPassword($encodedPassword1);
         #$user1->setPassword('pass');
-        $user1->setRoles(['ROLE_USER']);
+        $user1->setRole('ROLE_USER');
 
         $user2 = new User();
         $user2->setUsername("Emp1");
@@ -58,7 +58,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword2=$this->passwordEncoder->encodePassword($user2,$plainPassword2);
         $user2->setPassword($encodedPassword2);
         #$user2->setPassword('pass');
-        $user2->setRoles(['ROLE_STAFF']);
+        $user2->setRole('ROLE_STAFF');
 
         $user3 = new User();
         $user3->setUsername("admin");
@@ -66,7 +66,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword3 = $this->passwordEncoder->encodePassword($user3,$plainPassword3);
         $user3->setPassword($encodedPassword3);
         #$user3->setPassword('admin');
-        $user3->setRoles(['ROLE_ADMIN', 'ROLE_STAFF']);
+        $user3->setRole('ROLE_ADMIN');
 
         $user4 = new User();
         $user4->setUsername("Racer2");
@@ -74,7 +74,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword4=$this->passwordEncoder->encodePassword($user4,$plainPassword4);
         $user4->setPassword($encodedPassword4);
         #$user1->setPassword('pass');
-        $user4->setRoles(['ROLE_USER']);
+        $user4->setRole('ROLE_USER');
 
         $user5 = new User();
         $user5->setUsername("Racer3");
@@ -82,7 +82,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword5=$this->passwordEncoder->encodePassword($user5,$plainPassword5);
         $user5->setPassword($encodedPassword5);
         #$user1->setPassword('pass');
-        $user5->setRoles(['ROLE_USER']);
+        $user5->setRole('ROLE_USER');
 
         $user6 = new User();
         $user6->setUsername("Racer4");
@@ -90,7 +90,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword6=$this->passwordEncoder->encodePassword($user6,$plainPassword6);
         $user6->setPassword($encodedPassword6);
         #$user1->setPassword('pass');
-        $user6->setRoles(['ROLE_USER']);
+        $user6->setRole('ROLE_USER');
 
         $user7 = new User();
         $user7->setUsername("Racer5");
@@ -98,7 +98,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword7=$this->passwordEncoder->encodePassword($user7,$plainPassword7);
         $user7->setPassword($encodedPassword7);
         #$user1->setPassword('pass');
-        $user7->setRoles(['ROLE_USER']);
+        $user7->setRole('ROLE_USER');
 
         $user8 = new User();
         $user8->setUsername("Racer6");
@@ -106,7 +106,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword8=$this->passwordEncoder->encodePassword($user8,$plainPassword8);
         $user8->setPassword($encodedPassword8);
         #$user1->setPassword('pass');
-        $user8->setRoles(['ROLE_USER']);
+        $user8->setRole('ROLE_USER');
 
         $user9 = new User();
         $user9->setUsername("Racer7");
@@ -114,7 +114,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword9=$this->passwordEncoder->encodePassword($user9,$plainPassword9);
         $user9->setPassword($encodedPassword9);
         #$user1->setPassword('pass');
-        $user9->setRoles(['ROLE_USER']);
+        $user9->setRole('ROLE_USER');
 
         $user10 = new User();
         $user10->setUsername("Racer8");
@@ -122,7 +122,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword10=$this->passwordEncoder->encodePassword($user10,$plainPassword10);
         $user10->setPassword($encodedPassword10);
         #$user1->setPassword('pass');
-        $user10->setRoles(['ROLE_USER']);
+        $user10->setRole('ROLE_USER');
 
         $user11 = new User();
         $user11->setUsername("Racer9");
@@ -130,7 +130,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword11=$this->passwordEncoder->encodePassword($user11,$plainPassword11);
         $user11->setPassword($encodedPassword11);
         #$user1->setPassword('pass');
-        $user11->setRoles(['ROLE_USER']);
+        $user11->setRole('ROLE_USER');
 
         $user12 = new User();
         $user12->setUsername("Racer10");
@@ -138,7 +138,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword12=$this->passwordEncoder->encodePassword($user12,$plainPassword12);
         $user12->setPassword($encodedPassword1);
         #$user1->setPassword('pass');
-        $user12->setRoles(['ROLE_USER']);
+        $user12->setRole('ROLE_USER');
 
         $user13 = new User();
         $user13->setUsername("Racer11");
@@ -146,7 +146,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword13=$this->passwordEncoder->encodePassword($user13,$plainPassword13);
         $user13->setPassword($encodedPassword13);
         #$user1->setPassword('pass');
-        $user13->setRoles(['ROLE_USER']);
+        $user13->setRole('ROLE_USER');
 
         $user14 = new User();
         $user14->setUsername("Racer12");
@@ -154,7 +154,7 @@ class LaptimesFixture extends Fixture
         $encodedPassword14=$this->passwordEncoder->encodePassword($user14,$plainPassword14);
         $user14->setPassword($encodedPassword14);
         #$user1->setPassword('pass');
-        $user14->setRoles(['ROLE_USER']);
+        $user14->setRole('ROLE_USER');
 
         $manager->persist($user1);
         $manager->persist($user2);
