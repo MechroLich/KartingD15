@@ -26,15 +26,6 @@ class DefaultController extends AbstractController
         return $this->render($template, $args);
     }
     /**
-     * @Route("/laptimes", name="laptimes")
-     */
-    public function laptimes()
-    {
-        $template = 'default/laptimes.html.twig';
-        $args = [];
-        return $this->render($template, $args);
-    }
-    /**
      * @Route("/admin", name="admin")
      */
     public function admin()

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,25 @@ class Races
      * @ORM\Column(type="time")
      */
     private $time;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="race_id")
+     */
+    private $laptimes;
+
+    public function __toString()
+    {
+        $temp1 = (string) $this->getTrack()."-";
+        $temp2 = $this->getDate()->format('d-m-Y')."-";
+        $temp3 = $this->getTime()->format('H:i:s');
+        $comb = $temp1.$temp2.$temp3;
+        return $comb;
+    }
+
+    public function __construct()
+    {
+        $this->laptimes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -71,4 +92,36 @@ class Races
 
         return $this;
     }
+
+    /**
+     * @return Collection|Laptimes[]
+     */
+    public function getLaptimes(): Collection
+    {
+        return $this->laptimes;
+    }
+
+    public function addLaptime(Laptimes $laptime): self
+    {
+        if (!$this->laptimes->contains($laptime)) {
+            $this->laptimes[] = $laptime;
+            $laptime->setRaceId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaptime(Laptimes $laptime): self
+    {
+        if ($this->laptimes->contains($laptime)) {
+            $this->laptimes->removeElement($laptime);
+            // set the owning side to null (unless already changed)
+            if ($laptime->getRaceId() === $this) {
+                $laptime->setRaceId(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

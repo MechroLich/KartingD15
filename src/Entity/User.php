@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,6 +37,17 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="user_id")
+     */
+    private $laptimes;
+
+    public function __construct()
+    {
+        $this->laptimes = new ArrayCollection();
+    }
+
+
+    /**
      * A visual identifier that represents this user.
      *
      * @see UserInterface
@@ -42,6 +55,13 @@ class User implements UserInterface
     /**
      * @return mixed
      */
+
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
+
+
     public function getId(): int
     {
         return $this->id;
@@ -108,6 +128,37 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Laptimes[]
+     */
+    public function getLaptimes(): Collection
+    {
+        return $this->laptimes;
+    }
+
+    public function addLaptime(Laptimes $laptime): self
+    {
+        if (!$this->laptimes->contains($laptime)) {
+            $this->laptimes[] = $laptime;
+            $laptime->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaptime(Laptimes $laptime): self
+    {
+        if ($this->laptimes->contains($laptime)) {
+            $this->laptimes->removeElement($laptime);
+            // set the owning side to null (unless already changed)
+            if ($laptime->getUserId() === $this) {
+                $laptime->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 
 }

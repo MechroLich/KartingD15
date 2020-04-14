@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,12 +17,6 @@ class Laptimes
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user_id;
 
     /**
      * @ORM\Column(type="time", nullable=true)
@@ -43,31 +39,25 @@ class Laptimes
     private $total;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Races")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $race_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $finished;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="laptimes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Races", inversedBy="laptimes")
+     */
+    private $race_id;
+
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserId(): ?User
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(User $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
     }
 
     public function getLap1(): ?\DateTimeInterface
@@ -118,6 +108,30 @@ class Laptimes
         return $this;
     }
 
+    public function getFinished(): ?string
+    {
+        return $this->finished;
+    }
+
+    public function setFinished(string $finished): self
+    {
+        $this->finished = $finished;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
     public function getRaceId(): ?Races
     {
         return $this->race_id;
@@ -130,15 +144,4 @@ class Laptimes
         return $this;
     }
 
-    public function getFinished(): ?string
-    {
-        return $this->finished;
-    }
-
-    public function setFinished(string $finished): self
-    {
-        $this->finished = $finished;
-
-        return $this;
-    }
 }
