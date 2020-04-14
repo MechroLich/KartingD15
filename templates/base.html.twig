@@ -64,30 +64,116 @@
         {% endblock %}
     </head>
     <body>
-    <nav>
-        <ul>
-            <li>
-                <a href="{{ url('home') }}">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('login') }}">
-                    Login
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('laptimes_index') }}">
-                    Laptimes
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('logout') }}">
-                    Logout
-                </a>
-            </li>
-        </ul>
-    </nav>
+    {% if is_granted('ROLE_ADMIN') %}
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('login') }}">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptime') }}">
+                        Laptimes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptimes_index') }}">
+                        Staff Area
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('user_index') }}">
+                        Admin Area
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('logout') }}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% elseif is_granted('ROLE_STAFF') %}
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('login') }}">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptime') }}">
+                        Laptimes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptimes_index') }}">
+                        Staff Area
+                    </a>
+                <li>
+                    <a href="{{ url('logout') }}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% elseif is_granted('ROLE_USER') %}
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('login') }}">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptimes_index') }}">
+                        Laptimes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('logout') }}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% else %}
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('login') }}">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('laptimes_index') }}">
+                        Laptimes
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

@@ -25,21 +25,13 @@ class DefaultController extends AbstractController
         $args = [];
         return $this->render($template, $args);
     }
+
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/laps", name="laptime")
      */
-    public function admin()
+    public function laptime()
     {
-        $template = 'default/admin.html.twig';
-        $args = [];
-        return $this->render($template, $args);
-    }
-    /**
-     * @Route("/staff", name="staff")
-     */
-    public function staff()
-    {
-        $template = 'default/staff.html.twig';
+        $template = 'default/laptimes.html.twig';
         $args = [];
         return $this->render($template, $args);
     }

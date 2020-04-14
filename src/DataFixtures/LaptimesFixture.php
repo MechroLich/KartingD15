@@ -133,7 +133,7 @@ class LaptimesFixture extends Fixture
         $user11->setRoles(['ROLE_USER']);
 
         $user12 = new User();
-        $user12->setUsername("Racer 10");
+        $user12->setUsername("Racer10");
         $plainPassword12 = "pass";
         $encodedPassword12=$this->passwordEncoder->encodePassword($user12,$plainPassword12);
         $user12->setPassword($encodedPassword1);
