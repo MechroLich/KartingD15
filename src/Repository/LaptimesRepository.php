@@ -105,47 +105,45 @@ class LaptimesRepository extends ServiceEntityRepository
             ;
     }
 
-    public function raceLapReport($value)
+    public function avgTotalTrack($value)
     {
-        //debugging purposes, find all laptimes/races user was in and each other users time
-        //TODO develop race lap report
         dump($this->createQueryBuilder('l')
-            ->andWhere('l.races = :val')
+            ->select('avg(l.total)')
+            ->andWhere('l.races in (:val)')
             ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult());
 
         return $this->createQueryBuilder('l')
-            ->andWhere('l.races = :val')
+            ->select('avg(l.total)')
+            ->andWhere('l.races in (:val)')
             ->setParameter('val', $value)
-            //->orderBy('l.total', 'ASC') have to learn to sort by date
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
     }
 
-
-    public function allRaceLapReport($value)
+    public function findByRacesArrayID($value)
     {
-        //debugging purposes, find all laptimes/races user was in and each other users time
-        //TODO develop lap report for ass races
+        //debugging purposes, find which races user was in
         dump($this->createQueryBuilder('l')
-            ->andWhere('l.races = :val')
+            ->andWhere('l.races in (:val)')
             ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('l.finished = :val2')
+            ->setParameter('val2', "yes")
+            ->addOrderBy('l.total', 'ASC')
             ->getQuery()
             ->getResult());
 
         return $this->createQueryBuilder('l')
-            ->andWhere('l.races = :val')
+            ->andWhere('l.races in (:val)')
             ->setParameter('val', $value)
-            //->orderBy('l.total', 'ASC') have to learn to sort by date
-            ->setMaxResults(10)
+            ->andWhere('l.finished = :val2')
+            ->setParameter('val2', "yes")
+            ->addOrderBy('l.total', 'ASC')
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
     }
 
 

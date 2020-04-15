@@ -112,17 +112,31 @@ class DefaultController extends AbstractController
         else
         {
             $template = 'default/laptimes_race_report.html.twig';
-            $args = [];
+            $args = [
+            ];
             return $this->render($template, $args);
         }
     }
     /**
      * @Route("/laptime_allracereport", name="laptime_allracereport")
      */
-    public function laptime_allracereport()
+    public function laptime_allracereport(LaptimesRepository $laptimesRepository, RacesRepository $racesRepository)
     {
+        $trackAId = $racesRepository->findBy(["track" => "Track A"]);
+        $trackAAvg = $laptimesRepository->avgTotalTrack($trackAId);
+
+        $trackBId = $racesRepository->findBy(["track" => "Track B"]);
+        $trackBAvg = $laptimesRepository->avgTotalTrack($trackBId);
+
+        $trackATimes = $laptimesRepository->findByRacesArrayID($trackAId);
+        $trackBTimes = $laptimesRepository->findByRacesArrayID($trackBId);
         $template = 'default/laptimes_all_race_report.html.twig';
-        $args = [];
+        $args = [
+            'aAvg'=>json_encode(array($trackAAvg)),
+            'bAvg'=>json_encode(array($trackBAvg)),
+            'aTimes'=>$trackATimes,
+            'bTimes'=>$trackBTimes,
+        ];
         return $this->render($template, $args);
     }
 

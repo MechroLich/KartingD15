@@ -3,7 +3,90 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-<H1>Laptimes!</H1>
-<h1>All Races User In</h1>
+    <H1>Laptimes!</H1>
+    <h1>Track A</h1>
+    <table class="table" id="results_table">
+        <thead>
+        <tr>
+            <th>Lap1</th>
+            <th>Lap2</th>
+            <th>Lap3</th>
+            <th>Total</th>
+            <th>Finished</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for aTime in aTimes %}
+            <tr>
+                <td>{{ aTime.lap1 ? aTime.lap1|date('H:i:s') : '' }}</td>
+                <td>{{ aTime.lap2 ? aTime.lap2|date('H:i:s') : '' }}</td>
+                <td>{{ aTime.lap3 ? aTime.lap3|date('H:i:s') : '' }}</td>
+                <td>{{ aTime.total ? aTime.total|date('H:i:s') : '' }}</td>
+                <td>{{ aTime.finished }}</td>
+                <td>{{ aTime.user }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if aTimes is empty %}
 
+    {% else %}
+        <p>Slowest Time: {{ aTimes|last.user }} in {{  aTimes|last.total ? aTimes|last.total|date('H:i:s') : '' }}</p>
+        <p>Fastest Time: {{ aTimes[1].user }} in {{  aTimes[1].total ? aTimes[1].total|date('H:i:s') : '' }}</p>
+        {% set avg = aAvg|split('"') %}
+        {% set avg = "0" ~ avg[3] %}
+        {% set avg = avg|split('.')  %}
+        {% set avg = avg[0] %}
+        {% set avg = avg[:2] ~ ":" ~ avg[2:] %}
+        <p>Average Time to Complete All Laps: {{ avg }}
+        </p>
+    {% endif %}
+
+    <h1>Track B</h1>
+    <table class="table" id="results_table">
+        <thead>
+        <tr>
+            <th>Lap1</th>
+            <th>Lap2</th>
+            <th>Lap3</th>
+            <th>Total</th>
+            <th>Finished</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for bTime in bTimes %}
+            <tr>
+                <td>{{ bTime.lap1 ? bTime.lap1|date('H:i:s') : '' }}</td>
+                <td>{{ bTime.lap2 ? bTime.lap2|date('H:i:s') : '' }}</td>
+                <td>{{ bTime.lap3 ? bTime.lap3|date('H:i:s') : '' }}</td>
+                <td>{{ bTime.total ? bTime.total|date('H:i:s') : '' }}</td>
+                <td>{{ bTime.finished }}</td>
+                <td>{{ bTime.user }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if bTimes is empty %}
+
+    {% else %}
+        <p>Slowest Time: {{ bTimes|last.user }} in {{  bTimes|last.total ? bTimes|last.total|date('H:i:s') : '' }}</p>
+        <p>Fastest Time: {{ bTimes[1].user }} in {{  bTimes[1].total ? bTimes[1].total|date('H:i:s') : '' }}</p>
+        {% set avgB = bAvg|split('"') %}
+        {% set avgB = "0" ~ avgB[3] %}
+        {% set avgB = avgB|split('.')  %}
+        {% set avgB = avgB[0] %}
+        {% set avgB = avgB[:2] ~ ":" ~ avgB[2:] %}
+        <p>Average Time to Complete All Laps: {{ avgB }}
+        </p>
+    {% endif %}
 {% endblock %}
