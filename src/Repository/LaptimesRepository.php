@@ -70,14 +70,18 @@ class LaptimesRepository extends ServiceEntityRepository
         dump($this->createQueryBuilder('l')
             ->andWhere('l.races = :val')
             ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
+            ->addOrderBy('l.races', 'ASC')
+            ->addOrderBy('l.finished', 'DESC')
+            ->addOrderBy('l.total', 'ASC')
             ->getQuery()
             ->getResult());
 
         return $this->createQueryBuilder('l')
         ->andWhere('l.races = :val')
             ->setParameter('val', $value)
-            //->orderBy('l.total', 'ASC') have to learn to sort by date
+            ->addOrderBy('l.races', 'ASC')
+            ->addOrderBy('l.finished', 'DESC')
+            ->addOrderBy('l.total', 'ASC')
             ->getQuery()
             ->getResult()
            ;
