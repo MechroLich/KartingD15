@@ -37,7 +37,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="user")
      */
     private $laptimes;
 
@@ -127,6 +127,12 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+
+    public function getRoles(): array
+    {
+        return [$this->role];
+    }
+
     /**
      * @return Collection|Laptimes[]
      */
@@ -139,7 +145,7 @@ class User implements UserInterface
     {
         if (!$this->laptimes->contains($laptime)) {
             $this->laptimes[] = $laptime;
-            $laptime->setUserId($this);
+            $laptime->setUser($this);
         }
 
         return $this;
@@ -150,17 +156,12 @@ class User implements UserInterface
         if ($this->laptimes->contains($laptime)) {
             $this->laptimes->removeElement($laptime);
             // set the owning side to null (unless already changed)
-            if ($laptime->getUserId() === $this) {
-                $laptime->setUserId(null);
+            if ($laptime->getUser() === $this) {
+                $laptime->setUser(null);
             }
         }
 
         return $this;
-    }
-
-    public function getRoles(): array
-    {
-        return [$this->role];
     }
 
 }

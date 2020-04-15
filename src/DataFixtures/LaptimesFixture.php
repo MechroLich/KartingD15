@@ -175,120 +175,120 @@ class LaptimesFixture extends Fixture
         // $manager->persist($product);
 
         $laptime1 = new Laptimes();
-        $laptime1->setUserId($user1);
+        $laptime1->setUser($user1);
         $laptime1->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime1->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime1->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime1->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime1->setRaceId($race1);
+        $laptime1->setRaces($race1);
         $laptime1->setFinished("yes");
 
         $laptime2 = new Laptimes();
-        $laptime2->setUserId($user12);
+        $laptime2->setUser($user12);
         $laptime2->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime2->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime2->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime2->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime2->setRaceId($race1);
+        $laptime2->setRaces($race1);
         $laptime2->setFinished("yes");
 
         $laptime3 = new Laptimes();
-        $laptime3->setUserId($user13);
+        $laptime3->setUser($user13);
         $laptime3->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime3->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime3->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime3->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime3->setRaceId($race1);
+        $laptime3->setRaces($race1);
         $laptime3->setFinished("yes");
 
         $laptime3 = new Laptimes();
-        $laptime3->setUserId($user10);
+        $laptime3->setUser($user10);
         $laptime3->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime3->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime3->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime3->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime3->setRaceId($race1);
+        $laptime3->setRaces($race1);
         $laptime3->setFinished("yes");
 
         $laptime4 = new Laptimes();
-        $laptime4->setUserId($user4);
+        $laptime4->setUser($user4);
         $laptime4->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime4->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime4->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime4->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime4->setRaceId($race1);
+        $laptime4->setRaces($race1);
         $laptime4->setFinished("yes");
 
         $laptime5 = new Laptimes();
-        $laptime5->setUserId($user5);
+        $laptime5->setUser($user5);
         $laptime5->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime5->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime5->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime5->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime5->setRaceId($race2);
+        $laptime5->setRaces($race2);
         $laptime5->setFinished("yes");
 
         $laptime6 = new Laptimes();
-        $laptime6->setUserId($user6);
+        $laptime6->setUser($user6);
         $laptime6->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime6->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime6->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime6->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime6->setRaceId($race2);
+        $laptime6->setRaces($race2);
         $laptime6->setFinished("yes");
 
         $laptime7 = new Laptimes();
-        $laptime7->setUserId($user7);
+        $laptime7->setUser($user7);
         $laptime7->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime7->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime7->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime7->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime1->setRaceId($race2);
+        $laptime7->setRaces($race2);
         $laptime7->setFinished("yes");
 
         $laptime8 = new Laptimes();
-        $laptime8->setUserId($user8);
+        $laptime8->setUser($user8);
         $laptime8->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime8->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime8->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime8->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime8->setRaceId($race2);
+        $laptime8->setRaces($race2);
         $laptime8->setFinished("yes");
 
         $laptime9 = new Laptimes();
-        $laptime9->setUserId($user9);
+        $laptime9->setUser($user9);
         $laptime9->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime9->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime9->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime9->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime1->setRaceId($race3);
+        $laptime9->setRaces($race3);
         $laptime9->setFinished("yes");
 
         $laptime10 = new Laptimes();
-        $laptime10->setUserId($user1);
+        $laptime10->setUser($user1);
         $laptime10->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime10->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
-        $laptime10->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
-        $laptime10->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime10->setRaceId($race3);
+        $laptime10->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:20"));
+        $laptime10->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:21"));
+        $laptime10->setRaces($race3);
         $laptime10->setFinished("yes");
 
         $laptime11 = new Laptimes();
-        $laptime11->setUserId($user13);
+        $laptime11->setUser($user13);
         $laptime11->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime11->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime11->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime11->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime11->setRaceId($race3);
+        $laptime11->setRaces($race3);
         $laptime11->setFinished("yes");
 
         $laptime12 = new Laptimes();
-        $laptime12->setUserId($user14);
+        $laptime12->setUser($user14);
         $laptime12->setLap1(\DateTime::createFromFormat('H:i:s' ,"0:01:56"));
         $laptime12->setLap2(\DateTime::createFromFormat('H:i:s' ,"0:02:05"));
         $laptime12->setLap3(\DateTime::createFromFormat('H:i:s' ,"0:01:40"));
         $laptime12->setTotal(\DateTime::createFromFormat('H:i:s' ,"0:05:41"));
-        $laptime12->setRaceId($race3);
+        $laptime12->setRaces($race3);
         $laptime12->setFinished("yes");
 
         $manager->persist($laptime1);

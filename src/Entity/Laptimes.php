@@ -45,15 +45,13 @@ class Laptimes
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="laptimes")
-     * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Races", inversedBy="laptimes")
      */
-    private $race_id;
-
+    private $races;
 
     public function getId(): ?int
     {
@@ -120,26 +118,26 @@ class Laptimes
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getRaceId(): ?Races
+    public function getRaces(): ?Races
     {
-        return $this->race_id;
+        return $this->races;
     }
 
-    public function setRaceId(?Races $race_id): self
+    public function setRaces(?Races $races): self
     {
-        $this->race_id = $race_id;
+        $this->races = $races;
 
         return $this;
     }

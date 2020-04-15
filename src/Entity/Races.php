@@ -34,9 +34,10 @@ class Races
     private $time;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="race_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Laptimes", mappedBy="races")
      */
     private $laptimes;
+
 
     public function __toString()
     {
@@ -105,7 +106,7 @@ class Races
     {
         if (!$this->laptimes->contains($laptime)) {
             $this->laptimes[] = $laptime;
-            $laptime->setRaceId($this);
+            $laptime->setRaces($this);
         }
 
         return $this;
@@ -116,12 +117,13 @@ class Races
         if ($this->laptimes->contains($laptime)) {
             $this->laptimes->removeElement($laptime);
             // set the owning side to null (unless already changed)
-            if ($laptime->getRaceId() === $this) {
-                $laptime->setRaceId(null);
+            if ($laptime->getRaces() === $this) {
+                $laptime->setRaces(null);
             }
         }
 
         return $this;
     }
+
 
 }

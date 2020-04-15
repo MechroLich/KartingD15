@@ -17,8 +17,8 @@ class LaptimesType extends AbstractType
             ->add('lap3')
             ->add('total')
             ->add('finished')
-            ->add('user_id')
-            ->add('race_id')
+            ->add('user')
+            ->add('races')
         ;
     }
 
