@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<H1>races!</H1>
+<h1>All Races User In</h1>
+        <form action="laptime_racein" method="POST">
+                <select name="race">
+                {% for user in users %}
+                        <option value = {{ user.races.getId }} name="race">{{ user.races }}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="Get Race">
+        </form>
+        {% for user in users %}
+                {% if user.races.getId == id %}
+                        <h1>{{ user.races }}</h1>
+                {% endif %}
+        {% endfor %}
+        <table class="table">
+                <thead>
+                <tr>
+                        <th>Lap1</th>
+                        <th>Lap2</th>
+                        <th>Lap3</th>
+                        <th>Total</th>
+                        <th>Finished</th>
+                        <th>User</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for race in races %}
+                        <tr>
+                                <td>{{ race.lap1 ? race.lap1|date('H:i:s') : '' }}</td>
+                                <td>{{ race.lap2 ? race.lap2|date('H:i:s') : '' }}</td>
+                                <td>{{ race.lap3 ? race.lap3|date('H:i:s') : '' }}</td>
+                                <td>{{ race.total ? race.total|date('H:i:s') : '' }}</td>
+                                <td>{{ race.finished }}</td>
+                                <td>{{ race.user }}</td>
+                        </tr>
+                {% else %}
+                        <tr>
+                                <td colspan="7">no records found</td>
+                        </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+{% endblock %}

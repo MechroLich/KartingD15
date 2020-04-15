@@ -44,12 +44,12 @@ class Laptimes
     private $finished;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="laptimes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="laptimes", fetch = "EAGER")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Races", inversedBy="laptimes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Races", inversedBy="laptimes", fetch = "EAGER")
      */
     private $races;
 

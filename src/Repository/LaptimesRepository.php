@@ -45,6 +45,44 @@ class LaptimesRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findUserRaces($value)
+    {
+        //debugging purposes, find which races user was in
+        dump($this->createQueryBuilder('l')
+            ->andWhere('l.user = :val')
+            ->setParameter('val', $value)
+            //->orderBy('l.id', 'ASC')
+            ->getQuery()
+            ->getResult());
+
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.user = :val')
+            ->setParameter('val', $value)
+            //->orderBy('l.total', 'ASC') have to learn to sort by date
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByRacesID($value)
+    {
+        //debugging purposes, find which races user was in
+        dump($this->createQueryBuilder('l')
+            ->andWhere('l.races = :val')
+            ->setParameter('val', $value)
+            //->orderBy('l.id', 'ASC')
+            ->getQuery()
+            ->getResult());
+
+        return $this->createQueryBuilder('l')
+        ->andWhere('l.races = :val')
+            ->setParameter('val', $value)
+            //->orderBy('l.total', 'ASC') have to learn to sort by date
+            ->getQuery()
+            ->getResult()
+           ;
+    }
+
     public function findAllRaceTimes($value)
     {
         //debugging purposes, find all laptimes/races user was in and each other users time

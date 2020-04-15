@@ -3,9 +3,26 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-<H1>Welcome to Karting D15!</H1>
+<H1>Laptimes!</H1>
 
-    <p>
-        this is where laptimes will live for users
+    <p>homepage for laptimes! <br><br>
+
+        to see laptimes for all your races go here : <a href="{{ url('laptime_all') }}">
+            Your Races
+        </a><br><br>
+
+        to see laptimes for all in a race you were in go here : <a href="{{ url('laptime_racein') }}">
+            Race Present
+        </a><br><br>
+
+        to see report on a specific race go here : <a href="{{ url('laptime_racereport') }}">
+            Report of a Race
+        </a><br><br>
+
+        to see report on all races go here : <a href="{{ url('laptime_allracereport') }}">
+            Report on all Races
+        </a>
+
     </p>
+
 {% endblock %}

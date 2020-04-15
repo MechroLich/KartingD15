@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<H1>Laptimes!</H1>
+<h1>All Races User In</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Lap1</th>
+            <th>Lap2</th>
+            <th>Lap3</th>
+            <th>Total</th>
+            <th>Finished</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for laptime in laptimes %}
+            <tr>
+                <td>{{ laptime.lap1 ? laptime.lap1|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.lap2 ? laptime.lap2|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.lap3 ? laptime.lap3|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.total ? laptime.total|date('H:i:s') : '' }}</td>
+                <td>{{ laptime.finished }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
