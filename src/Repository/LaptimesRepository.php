@@ -77,33 +77,29 @@ class LaptimesRepository extends ServiceEntityRepository
             ->getResult());
 
         return $this->createQueryBuilder('l')
-        ->andWhere('l.races = :val')
+            ->andWhere('l.races = :val')
             ->setParameter('val', $value)
             ->addOrderBy('l.races', 'ASC')
             ->addOrderBy('l.finished', 'DESC')
             ->addOrderBy('l.total', 'ASC')
             ->getQuery()
             ->getResult()
-           ;
+            ;
     }
 
-    public function findAllRaceTimes($value)
+    public function avgTotal($value)
     {
-        //debugging purposes, find all laptimes/races user was in and each other users time
-        //TODO must add way user can only see races they were in
         dump($this->createQueryBuilder('l')
+            ->select('avg(l.total)')
             ->andWhere('l.races = :val')
             ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult());
 
         return $this->createQueryBuilder('l')
+            ->select('avg(l.total)')
             ->andWhere('l.races = :val')
             ->setParameter('val', $value)
-            //->orderBy('l.total', 'ASC') have to learn to sort by date
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
             ;

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\LaptimesRepository;
+use App\Repository\RacesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -91,11 +92,29 @@ class DefaultController extends AbstractController
     /**
      * @Route("/laptime_racereport", name="laptime_racereport")
      */
-    public function laptime_racereport()
+    public function laptime_racereport(LaptimesRepository $laptimesRepository, RacesRepository $racesRepository, Request $request)
     {
-        $template = 'default/laptimes_race_report.html.twig';
-        $args = [];
-        return $this->render($template, $args);
+        $raceid = $request->get('race');
+        if(null!==$this->getUser())
+        {
+            $races = $racesRepository->findAll();
+            $raceLaps = $laptimesRepository->findByRacesID($raceid);
+            $average = $laptimesRepository->avgTotal($raceid);
+            $template = 'default/laptimes_race_report.html.twig';
+            $args = [
+                'races'=>$races,
+                'raceLaps'=>$raceLaps,
+                'id'=>$raceid,
+                'average'=>json_encode(array($average))
+            ];
+            return $this->render($template, $args);
+        }
+        else
+        {
+            $template = 'default/laptimes_race_report.html.twig';
+            $args = [];
+            return $this->render($template, $args);
+        }
     }
     /**
      * @Route("/laptime_allracereport", name="laptime_allracereport")

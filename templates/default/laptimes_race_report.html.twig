@@ -3,7 +3,60 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-<H1>Laptimes!</H1>
-<h1>All Races User In</h1>
+    <H1>races!</H1>
+    <h1>Race Report</h1>
+    <form action="laptime_racereport" method="POST">
+        <select name="race">
+            {% for race in races %}
+                <option value = {{ race.id }} name="race">{{ race }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Get Race">
+    </form>
+    {% for race in races %}
+        {% if race.id == id %}
+            <h1>{{ race }}</h1>
+        {% endif %}
+    {% endfor %}
+    <table class="table" id="results_table">
+        <thead>
+        <tr>
+            <th>Lap1</th>
+            <th>Lap2</th>
+            <th>Lap3</th>
+            <th>Total</th>
+            <th>Finished</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for raceLap in raceLaps %}
+            <tr>
+                <td>{{ raceLap.lap1 ? raceLap.lap1|date('H:i:s') : '' }}</td>
+                <td>{{ raceLap.lap2 ? raceLap.lap2|date('H:i:s') : '' }}</td>
+                <td>{{ raceLap.lap3 ? raceLap.lap3|date('H:i:s') : '' }}</td>
+                <td>{{ raceLap.total ? raceLap.total|date('H:i:s') : '' }}</td>
+                <td>{{ raceLap.finished }}</td>
+                <td>{{ raceLap.user }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if raceLaps is empty %}
 
+    {% else %}
+        <p>Slowest Time: {{ raceLaps[3].user }} in {{  raceLaps[3].total ? raceLaps[3].total|date('H:i:s') : '' }}</p>
+        <p>Fastest Time: {{ raceLaps[1].user }} in {{  raceLaps[1].total ? raceLaps[1].total|date('H:i:s') : '' }}</p>
+        {% set avg = average|split('"') %}
+        {% set avg = "0" ~ avg[3] %}
+        {% set avg = avg|split('.')  %}
+        {% set avg = avg[0] %}
+        {% set avg = avg[:2] ~ ":" ~ avg[2:] %}
+        <p>Average Time to Complete All Laps: {{ avg }}
+        </p>
+    {% endif %}
 {% endblock %}
