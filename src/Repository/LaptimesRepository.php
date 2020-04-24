@@ -26,14 +26,6 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function findMyRaces($value)
     {
-        //debugging purposes
-        dump($this->createQueryBuilder('l')
-            ->andWhere('l.user = :val')
-            ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult());
 
         return $this->createQueryBuilder('l')
             ->andWhere('l.user = :val')
@@ -47,13 +39,6 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function findUserRaces($value)
     {
-        //debugging purposes, find which races user was in
-        dump($this->createQueryBuilder('l')
-            ->andWhere('l.user = :val')
-            ->setParameter('val', $value)
-            //->orderBy('l.id', 'ASC')
-            ->getQuery()
-            ->getResult());
 
         return $this->createQueryBuilder('l')
             ->andWhere('l.user = :val')
@@ -66,16 +51,6 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function findByRacesID($value)
     {
-        //debugging purposes, find which races user was in
-        dump($this->createQueryBuilder('l')
-            ->andWhere('l.races = :val')
-            ->setParameter('val', $value)
-            ->addOrderBy('l.races', 'ASC')
-            ->addOrderBy('l.finished', 'DESC')
-            ->addOrderBy('l.total', 'ASC')
-            ->getQuery()
-            ->getResult());
-
         return $this->createQueryBuilder('l')
             ->andWhere('l.races = :val')
             ->setParameter('val', $value)
@@ -89,13 +64,6 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function avgTotal($value)
     {
-        dump($this->createQueryBuilder('l')
-            ->select('avg(l.total)')
-            ->andWhere('l.races = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult());
-
         return $this->createQueryBuilder('l')
             ->select('avg(l.total)')
             ->andWhere('l.races = :val')
@@ -107,13 +75,6 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function avgTotalTrack($value)
     {
-        dump($this->createQueryBuilder('l')
-            ->select('avg(l.total)')
-            ->andWhere('l.races in (:val)')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult());
-
         return $this->createQueryBuilder('l')
             ->select('avg(l.total)')
             ->andWhere('l.races in (:val)')
@@ -125,17 +86,7 @@ class LaptimesRepository extends ServiceEntityRepository
 
     public function findByRacesArrayID($value)
     {
-        //debugging purposes, find which races user was in
-        dump($this->createQueryBuilder('l')
-            ->andWhere('l.races in (:val)')
-            ->setParameter('val', $value)
-            ->andWhere('l.finished = :val2')
-            ->setParameter('val2', "yes")
-            ->addOrderBy('l.total', 'ASC')
-            ->getQuery()
-            ->getResult());
-
-        return $this->createQueryBuilder('l')
+       return $this->createQueryBuilder('l')
             ->andWhere('l.races in (:val)')
             ->setParameter('val', $value)
             ->andWhere('l.finished = :val2')

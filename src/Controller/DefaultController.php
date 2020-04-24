@@ -38,6 +38,16 @@ class DefaultController extends AbstractController
         $args = [];
         return $this->render($template, $args);
     }
+    /**
+     * @Route("/staff", name="staff")
+     */
+
+    public function staff()
+    {
+        $template = 'default/staff.html.twig';
+        $args = [];
+        return $this->render($template, $args);
+    }
 
     /**
      * @Route("/laptime_all", name="laptime_all")
